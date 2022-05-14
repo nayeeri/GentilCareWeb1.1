@@ -1,0 +1,168 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+
+    <!-- Main -->
+    <div class="flex flex-col flex-auto items-center p-6 sm:p-10">
+        <div class="flex flex-col w-full max-w-4xl">
+
+            <div class="mt-2 text-4xl sm:text-7xl font-extrabold tracking-tight leading-tight">
+                {{ title }}
+            </div>
+
+            <!-- Alert -->
+
+            <!-- Form -->
+            <div class="sm:p-10 sm:pb-7 shadow rounded-2xl bg-card" *ngIf="proveedor">
+                <fuse-alert *ngIf="showAlert" [showIcon]="false" [type]="alert.type">
+                    {{alert.message}}
+                </fuse-alert>
+                <form class="space-y-3" [formGroup]="form_" #supportNgForm="ngForm">
+                    <div class="grid sm:grid-cols-4 gap-4 w-full mt-8">
+
+                        <div class="sm:col-span-4">
+                            <!-- Proveedor field -->
+                            <mat-form-field class="w-full">
+                                <mat-label>Proveedor</mat-label>
+                                <input id="nombre" matInput [formControlName]="'nombre'">
+                                <mat-error *ngIf="form_.get('nombre').hasError('required')">
+                                    Nombre del proveedor es requerido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="sm:col-span-4">
+                            <!-- Email -->
+                            <mat-form-field class="w-full">
+                                <mat-label>Email</mat-label>
+                                <input type="email" id="email" matInput [formControlName]="'email'">
+                                <mat-error *ngIf="form_.get('email').hasError('required')">
+                                    Email es requerido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="sm:col-span-3">
+                            <!-- Calle field -->
+                            <mat-form-field class="w-full">
+                                <mat-label>Calle</mat-label>
+                                <input id="calle" matInput [formControlName]="'calle'">
+                                <mat-error *ngIf="form_.get('calle').hasError('required')">
+                                    Calle es requerido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="sm:col-span-1">
+                            <!-- No Exterior field -->
+                            <mat-form-field class="w-full">
+                                <mat-label>No. Exterior</mat-label>
+                                <input id="noExterior" matInput [formControlName]="'noExterior'">
+                                <mat-error *ngIf="form_.get('noExterior').hasError('required')">
+                                    Calle es requerido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="sm:col-span-2">
+                            <!-- Colonia field -->
+                            <mat-form-field class="w-full">
+                                <mat-label>Colonia</mat-label>
+                                <input id="noExterior" matInput [formControlName]="'colonia'">
+                                <mat-error *ngIf="form_.get('colonia').hasError('required')">
+                                    Colonia es requerido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="sm:col-span-2">
+                            <!-- Municipio field -->
+                            <mat-form-field class="w-full">
+                                <mat-label>Municipio</mat-label>
+                                <input id="noExterior" matInput [formControlName]="'municipio'">
+                                <mat-error *ngIf="form_.get('municipio').hasError('required')">
+                                    Municipio es requerido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="sm:col-span-2">
+
+                            <!-- Ciudad field -->
+                            <mat-form-field class="w-full">
+                                <mat-label>Ciudad</mat-label>
+                                <input id="ciudad" matInput [formControlName]="'ciudad'">
+                                <mat-error *ngIf="form_.get('ciudad').hasError('required')">
+                                    Ciudad es requerido
+                                </mat-error>
+                            </mat-form-field>
+
+                        </div>
+
+                        <div class="sm:col-span-2">
+                            <!-- Estado field -->
+                            <mat-form-field class="w-full">
+                                <mat-label>Estado</mat-label>
+                                <input id="estado" matInput [formControlName]="'estado'">
+                                <mat-error *ngIf="form_.get('estado').hasError('required')">
+                                    Estado es requerido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="sm:col-span-2">
+                            <!-- CP field -->
+                            <mat-form-field class="w-full">
+                                <mat-label>Codigo Postal</mat-label>
+                                <input id="noExterior" matInput [formControlName]="'cp'">
+                                <mat-error *ngIf="form_.get('cp').hasError('required')">
+                                    Codigo Postal es requerido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="sm:col-span-2">
+                            <!-- Telefono Contacto field -->
+                            <mat-form-field class="w-full">
+                                <mat-label>Telefono contacto</mat-label>
+                                <input id="telefono" matInput [formControlName]="'telefonoContacto'">
+                                <mat-error *ngIf="form_.get('telefonoContacto').hasError('required')">
+                                    Telefono Contacto es requerido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="sm:col-span-2">
+                        <!-- Costo field -->
+                        <mat-form-field class="w-full">
+                            <mat-label>Costo</mat-label>
+                            <input id="costo" matInput [formControlName]="'costo'" (keypress)="numberOnly($event)">
+                            <mat-error *ngIf="form_.get('costo').hasError('required')">
+                                Costo es requerido
+                            </mat-error>
+                        </mat-form-field>
+
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+
+
+                    <!-- Actions -->
+                    <div class="flex items-center justify-end">
+                        <button mat-button [color]="'accent'" [routerLink]="['/pages/proveedores/lista']">
+                            Cancelar
+                        </button>
+                        <button class="ml-2" mat-flat-button [color]="'primary'" (click)="save()">
+                            Guardar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

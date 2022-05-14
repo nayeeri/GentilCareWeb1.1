@@ -1,0 +1,50 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+
+    <!-- Main -->
+    <div class="flex flex-col flex-auto items-center p-6 sm:p-10">
+        <div class="flex flex-col w-full max-w-4xl">
+
+            <div class="mt-2 text-4xl sm:text-7xl font-extrabold tracking-tight leading-tight">
+                {{ title }}
+            </div>
+
+            <!-- Alert -->
+
+            <!-- Form -->
+            <div class="sm:p-10 sm:pb-7 shadow rounded-2xl bg-card">
+                <fuse-alert *ngIf="showAlert" [showIcon]="false" [type]="alert.type">
+                    {{alert.message}}
+                </fuse-alert>
+                <form class="space-y-3" [formGroup]="form_" #supportNgForm="ngForm">
+
+                    <!-- Carpeta field -->
+                    <mat-form-field class="w-full">
+                        <mat-label>Carpeta</mat-label>
+                        <input id="carpeta" matInput [formControlName]="'carpeta'">
+                        <mat-error *ngIf="form_.get('carpeta').hasError('required')">
+                            Carpeta es requerido
+                        </mat-error>
+                    </mat-form-field>
+                    <!-- Carpeta field -->
+                    <mat-form-field class="w-full">
+                        <mat-label>Sub Carpeta</mat-label>
+                        <input id="subCarpeta" matInput [formControlName]="'subCarpeta'">
+                        <mat-error *ngIf="form_.get('subCarpeta').hasError('required')">
+                            Sub Carpeta es requerido
+                        </mat-error>
+                    </mat-form-field>
+
+
+                    <!-- Actions -->
+                    <div class="flex items-center justify-end">
+
+                        <button class="ml-2" mat-flat-button [color]="'primary'" (click)="save()">
+                                Crear Carpeta
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

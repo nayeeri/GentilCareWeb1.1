@@ -1,0 +1,38 @@
+<div class="pb-5 border-b border-gray-200 w-auto sm:pb-0">
+    <div class="mt-3 sm:mt-4">
+      <!-- Dropdown menu on small screens -->
+      <div class="sm:hidden">
+        <label for="current-tab" class="sr-only">Select a tab</label>
+        <select id="current-tab" name="current-tab" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+          <option *ngIf="!isSelected(0)">Crear estudio</option>
+          <option selected *ngIf="isSelected(0)">Crear estudio</option>
+
+          <option *ngIf="!isSelected(1)">Crear especialidad</option>
+          <option selected *ngIf="isSelected(1)">Crear especialidad</option>
+
+          <option *ngIf="!isSelected(2)">Medicamentos</option>
+          <option selected *ngIf="isSelected(2)">Medicamentos</option>
+
+          <option *ngIf="!isSelected(3)">Provedores</option>
+          <option selected *ngIf="isSelected(3)">Provedores</option>
+        </select>
+      </div>
+      <!-- Tabs at small breakpoint and up -->
+      <div class="hidden sm:block">
+        <nav class="-mb-px flex space-x-8 place-content-end px-12">
+          <!-- Current: "border-indigo-500 text-indigo-600", Default: "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" -->
+          <a href='/pages/services/studies' *ngIf="!isSelected(0)" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm cursor-pointer"> Crear estudio </a>
+          <a *ngIf="isSelected(0)" class="border-indigo-500 text-indigo-600 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm cursor-pointer" aria-current="page"> Crear estudio </a>
+
+          <a href='/pages/services/specialities' *ngIf="!isSelected(1)" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm cursor-pointer"> Crear especialidad </a>
+          <a *ngIf="isSelected(1)" class="border-indigo-500 text-indigo-600 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm cursor-pointer" aria-current="page"> Crear especialidad </a>
+
+          <a href='/pages/services/medicaments' *ngIf="!isSelected(2)" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm cursor-pointer"> Medicamentos </a>
+          <a *ngIf="isSelected(2)" class="border-indigo-500 text-indigo-600 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm cursor-pointer" aria-current="page"> Medicamentos </a>
+
+          <a href='/pages/services/suppliers' *ngIf="!isSelected(3)" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm cursor-pointer"> Provedores </a>
+          <a *ngIf="isSelected(3)" class="border-indigo-500 text-indigo-600 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm cursor-pointer" aria-current="page"> Provedores </a>
+        </nav>
+      </div>
+    </div>
+</div>

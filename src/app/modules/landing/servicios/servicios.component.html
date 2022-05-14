@@ -1,0 +1,154 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+    <!-- Main -->
+    <div class="flex flex-col flex-auto items-center p-6 sm:p-10">
+        <div class="flex flex-col w-full max-w-4xl">
+
+            <div class="mt-2 text-4xl sm:text-7xl font-extrabold tracking-tight leading-tight">
+                Compra de servicios
+            </div>
+            <fuse-alert *ngIf="showAlert" [appearance]="'outline'" [showIcon]="false" [type]="alert.type">
+                <span fuseAlertTitle>Gracias</span>
+                {{alert.message}}
+            </fuse-alert>
+
+            <!-- Form -->
+            <div class="mt-8 sm:mt-12 p-6 pb-7 sm:p-10 sm:pb-7 shadow rounded-2xl bg-card">
+
+
+                <form class="mt-8" [formGroup]="servicioForm">
+
+                    <div class="grid sm:grid-cols-4 gap-2 w-full mt-8">
+                        <div class="sm:col-span-2">
+                            <!-- Consulta field -->
+                            <mat-form-field class="w-full">
+                                <mat-label>Consulta Médica</mat-label>
+
+
+                                <mat-select [formControlName]="'consulta'">
+                                    <mat-option>Seleccionar</mat-option>
+                                    <mat-option value="Especialista1">Especialista1</mat-option>
+                                    <mat-option value="Especialista2">Especialista2</mat-option>
+                                    <mat-option value="Especialista3">Especialista3</mat-option>
+                                </mat-select>
+
+                                <mat-error *ngIf="servicioForm.get('apellidoMaterno').hasError('required')">
+                                    Consulta Médica es requerida
+                                </mat-error>
+                            </mat-form-field>
+
+                        </div>
+
+                        <div class="sm:col-span-2">
+                            <!-- Email field -->
+                            <mat-form-field class="w-full">
+                                <mat-label>Correo electrónico</mat-label>
+                                <input id="email" matInput [formControlName]="'correo'">
+                                <mat-error *ngIf="servicioForm.get('correo').hasError('required')">
+                                    Correo electrónico es requerido
+                                </mat-error>
+                                <mat-error *ngIf="servicioForm.get('correo').hasError('email')">
+                                    Por favor, introduce una dirección de correo electrónico válida
+                                </mat-error>
+                            </mat-form-field>
+
+                        </div>
+
+                        <div class="sm:col-span-4">
+                            <!-- Name field -->
+                            <mat-form-field class="w-full">
+                                <mat-label>Nombre</mat-label>
+                                <input id="nombre" matInput [formControlName]="'nombre'">
+                                <mat-error *ngIf="servicioForm.get('nombre').hasError('required')">
+                                    Nombre es requerido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="sm:col-span-2">
+                            <!-- Apellido Paterno field -->
+                            <mat-form-field class="w-full">
+                                <mat-label>Apellido Paterno</mat-label>
+                                <input id="apellidoPaterno" matInput [formControlName]="'apellidoPaterno'">
+                                <mat-error *ngIf="servicioForm.get('apellidoPaterno').hasError('required')">
+                                    Apellido Paterno es requerido
+                                </mat-error>
+                            </mat-form-field>
+
+                        </div>
+                        <div class="sm:col-span-2">
+                            <!-- Apellido Materno field -->
+                            <mat-form-field class="w-full">
+                                <mat-label>Apellido Materno</mat-label>
+                                <input id="apellidoMaterno" matInput [formControlName]="'apellidoMaterno'">
+                                <mat-error *ngIf="servicioForm.get('apellidoMaterno').hasError('required')">
+                                    Apellido Materno es requerido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="sm:col-span-2">
+                            <!-- Sexo field -->
+                            <mat-form-field class="w-full">
+                                <mat-label>Sexo</mat-label>
+
+
+                                <mat-select [formControlName]="'sexo'">
+                                    <mat-option>Seleccionar</mat-option>
+                                    <mat-option value="Femenino">Femenino</mat-option>
+                                    <mat-option value="Masculino">Masculino</mat-option>
+                                </mat-select>
+
+                                <mat-error *ngIf="servicioForm.get('apellidoMaterno').hasError('required')">
+                                    Sexo es requerido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <!-- Ceular field -->
+                            <mat-form-field class="w-full">
+                                <mat-label>Número de Celular</mat-label>
+                                <input id="numeroCelular" matInput [formControlName]="'numeroCelular'"
+                                    (keypress)="numberOnly($event, 7)">
+                            </mat-form-field>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <mat-form-field class="w-full">
+                                <mat-label>Fecha deseada de consulta</mat-label>
+                                <input matInput [matDatepicker]="fechConsulta" disabled  (dateChange)="setFechaCita( $event)">
+                                <mat-datepicker-toggle matSuffix [for]="fechConsulta"></mat-datepicker-toggle>
+                                <mat-datepicker #fechConsulta disabled="false" ></mat-datepicker>
+                                <mat-error *ngIf="servicioForm.get('fechaConsulta').hasError('required')">
+                                    Fecha deseada de consulta es requerida
+                                </mat-error>
+                            </mat-form-field>
+
+                        </div>
+                        <div class="sm:col-span-4">
+                            <!-- Motivo field -->
+                            <mat-form-field class="w-full">
+                                <mat-label>Motivo de consulta</mat-label>
+                                <textarea id="numeroCelular" matInput [formControlName]="'motivo'"></textarea>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+
+                    <div class="text-center">
+                        <!-- Submit button -->
+                        <button mat-flat-button [color]="'primary'" [disabled]="servicioForm.disabled"
+                            (click)="validate()">
+                            Validar Compra
+                            <mat-progress-spinner *ngIf="servicioForm.disabled" [diameter]="24"
+                                [mode]="'indeterminate'">
+                            </mat-progress-spinner>
+                        </button>
+                    </div>
+
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

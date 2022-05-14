@@ -1,0 +1,342 @@
+<div class="sm:absolute sm:inset-0 flex flex-col flex-auto min-w-0 sm:overflow-hidden bg-card dark:bg-transparent">
+
+    <!-- Header -->
+    <div
+        class="relative flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between py-8 px-6 md:px-8 border-b">
+        <!-- Title -->
+        <div class="text-4xl font-extrabold tracking-tight">Datos Consulta</div>
+        <!-- Actions -->
+        <div class="flex items-center justify-end">
+            <button mat-button [color]="'primary'" (click)="regresar()">
+                Regresar
+            </button>
+        
+        </div>
+    </div>
+
+    <!-- Main -->
+    <div class="flex flex-auto overflow-hidden">
+        <div class="flex flex-col flex-auto overflow-hidden sm:overflow-y-auto">
+
+            
+           
+
+            <div class="grid">
+                <!-- Principal-->
+                <table class="w-full bg-transparent" mat-table [dataSource]="dataSourcePrincipal">
+                    <ng-container matColumnDef="fecha">
+                        <th mat-header-cell class="bg-gray-100 " *matHeaderCellDef>
+                            <div class="text-md font-semibold text-primary">
+                                Fecha:
+                            </div>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="pr-6 whitespace-nowrap">
+                                {{element.fecha}}
+                            </span>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="motivo">
+                        <th mat-header-cell class="bg-gray-100 " *matHeaderCellDef>
+                            <div class="text-md font-semibold text-primary">
+                                Motivo:
+                            </div>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="pr-6 whitespace-nowrap">
+                                {{element.motivo}}
+                            </span>
+                        </td>
+
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsPrincipal"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsPrincipal;"></tr>
+                </table>
+                <br />
+                <div
+                    class="relative flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between py-8 px-6 md:px-8 border-b">
+                    <!-- Title -->
+                    <div class="text-xl font-extrabold tracking-tight">Signos Vitales</div>
+                </div>
+
+
+                <!-- SignosVitales-->
+                <table class="w-full bg-transparent" mat-table [dataSource]="dataSourceSignos">
+                    <!--Frecuencia Cardiaca-->
+                    <ng-container matColumnDef="frecuenciaCardiaca">
+                        <th mat-header-cell class="bg-gray-100 " *matHeaderCellDef>
+                            <div class="text-md font-semibold text-primary">
+                                Frecuencia Cardiaca
+                            </div>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="pr-6 whitespace-nowrap">
+                                {{element.frecuenciaCardiaca}}
+                            </span>
+                        </td>
+                    </ng-container>
+                    <!--Frecuencia Respiratoria-->
+                    <ng-container matColumnDef="frecuenciaRespiratoria">
+                        <th mat-header-cell class="bg-gray-100 " *matHeaderCellDef>
+                            <div class="text-md font-semibold text-primary">
+                                Aparato Respiratorio
+                            </div>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="pr-6 whitespace-nowrap">
+                                {{element.frecuenciaRespiratoria}}
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <!--Glucosa-->
+                    <ng-container matColumnDef="glucosa">
+                        <th mat-header-cell class="bg-gray-100 " *matHeaderCellDef>
+                            <div class="text-md font-semibold text-primary">
+                                Glucosa
+                            </div>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="pr-6 whitespace-nowrap">
+                                {{element.glucosa}}
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <!--Temperatura-->
+                    <ng-container matColumnDef="temperatura">
+                        <th mat-header-cell class="bg-gray-100 " *matHeaderCellDef>
+                            <div class="text-md font-semibold text-primary">
+                                Temperatura
+                            </div>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="pr-6 whitespace-nowrap">
+                                {{element.temperatura}}
+                            </span>
+                        </td>
+                    </ng-container>
+                    <!--Temperatura-->
+                    <ng-container matColumnDef="saturacion">
+                        <th mat-header-cell class="bg-gray-100 " *matHeaderCellDef>
+                            <div class="text-md font-semibold text-primary">
+                                Saturación
+                            </div>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="pr-6 whitespace-nowrap">
+                                {{element.saturacion}}
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsSignos"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsSignos;"></tr>
+                </table>
+             
+                <div
+                    class="relative flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between py-8 px-6 md:px-8 border-b">
+                    <!-- Title -->
+                    <div class="text-xl font-extrabold tracking-tight">Interrogatorio</div>
+                </div>
+                <!-- Interrogatorio-->
+                <table class="w-full bg-transparent" mat-table [dataSource]="dataSourceInter">
+                    <!--Aparato Cardio Vascular-->
+                    <ng-container matColumnDef="cardioVascular">
+                        <th mat-header-cell class="bg-gray-100 " *matHeaderCellDef>
+                            <div class="text-md font-semibold text-primary">
+                                Aparato Cardio Vascular
+                            </div>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="pr-6 whitespace-nowrap">
+                                {{element.cardioVascular}}
+                            </span>
+                        </td>
+                    </ng-container>
+                    <!-- Aparato Respiratorio-->
+                    <ng-container matColumnDef="aparatoRespiratorio">
+                        <th mat-header-cell class="bg-gray-100 " *matHeaderCellDef>
+                            <div class="text-md font-semibold text-primary">
+                                Aparato Respiratorio
+                            </div>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="pr-6 whitespace-nowrap">
+                                {{element.aparatoRespiratorio}}
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <!--Piel y Tegumentos-->
+                    <ng-container matColumnDef="PielTegumentos">
+                        <th mat-header-cell class="bg-gray-100 " *matHeaderCellDef>
+                            <div class="text-md font-semibold text-primary">
+                                Piel y Tegumentos
+                            </div>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="pr-6 whitespace-nowrap">
+                                {{element.PielTegumentos}}
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <!--Sintomas Generales-->
+                    <ng-container matColumnDef="sintomasGenerales">
+                        <th mat-header-cell class="bg-gray-100 " *matHeaderCellDef>
+                            <div class="text-md font-semibold text-primary">
+                                Sintomas Generales
+                            </div>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="pr-6 whitespace-nowrap">
+                                {{element.sintomasGenerales}}
+                            </span>
+                        </td>
+                    </ng-container>
+                    <!--Esfera Psiquica-->
+                    <ng-container matColumnDef="esfera_Psiquica">
+                        <th mat-header-cell class="bg-gray-100 " *matHeaderCellDef>
+                            <div class="text-md font-semibold text-primary">
+                                Esfera Psiquica
+                            </div>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="pr-6 whitespace-nowrap">
+                                {{element.esfera_Psiquica}}
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <!--Sistema Digestivo-->
+                    <ng-container matColumnDef="sistemaDigestivo">
+                        <th mat-header-cell class="bg-gray-100 " *matHeaderCellDef>
+                            <div class="text-md font-semibold text-primary">
+                                Sistema Digestivo
+                            </div>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="pr-6 whitespace-nowrap">
+                                {{element.sistemaDigestivo}}
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <!--Sistema Endocrino-->
+                    <ng-container matColumnDef="sistemaEndocrino">
+                        <th mat-header-cell class="bg-gray-100 " *matHeaderCellDef>
+                            <div class="text-md font-semibold text-primary">
+                                Sistema Endocrino
+                            </div>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="pr-6 whitespace-nowrap">
+                                {{element.sistemaEndocrino}}
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <!--Sistema Hematopoyetico-->
+                    <ng-container matColumnDef="sistemaHematopoyetico">
+                        <th mat-header-cell class="bg-gray-100 " *matHeaderCellDef>
+                            <div class="text-md font-semibold text-primary">
+                                Sistema Hematopoyetico
+                            </div>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="pr-6 whitespace-nowrap">
+                                {{element.sistemaHematopoyetico}}
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <!--Sistema Endocrino-->
+                    <ng-container matColumnDef="sistemaMusculoEsqueletico">
+                        <th mat-header-cell class="bg-gray-100 " *matHeaderCellDef>
+                            <div class="text-md font-semibold text-primary">
+                                Sistema Musculo Esqueletico
+                            </div>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="pr-6 whitespace-nowrap">
+                                {{element.sistemaMusculoEsqueletico}}
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <!--Sistema Endocrino-->
+                    <ng-container matColumnDef="sistemaNervioso">
+                        <th mat-header-cell class="bg-gray-100 " *matHeaderCellDef>
+                            <div class="text-md font-semibold text-primary">
+                                Sistema Nervioso
+                            </div>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="pr-6 whitespace-nowrap">
+                                {{element.sistemaNervioso}}
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsInter"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsInter;"></tr>
+                </table>
+
+                <div class="relative flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between py-8 px-6 md:px-8 border-b">
+                    <!-- Title -->
+                    <div class="text-xl font-extrabold tracking-tight">Estudios</div>
+                </div>
+                <!-- Estudios-->
+                <table class="w-full bg-transparent" mat-table [dataSource]="dataSourceEstudio">
+                    <!--No-->
+                    <ng-container matColumnDef="no">
+                        <th mat-header-cell class="bg-gray-100 " *matHeaderCellDef>
+                            <div class="text-md font-semibold text-primary">
+                                No.
+                            </div>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="pr-6 whitespace-nowrap">
+                                {{element.no}}
+                            </span>
+                        </td>
+                    </ng-container>
+                    <!-- Nombre de Estudio-->
+                    <ng-container matColumnDef="nombre">
+                        <th mat-header-cell class="bg-gray-100 " *matHeaderCellDef>
+                            <div class="text-md font-semibold text-primary">
+                            Nombre de Estudio
+                            </div>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="pr-6 whitespace-nowrap">
+                                {{element.nombre}}
+                            </span>
+                        </td>
+                    </ng-container>
+                
+                    <!--detalle-->
+                    <ng-container matColumnDef="detalle">
+                        <th mat-header-cell class="bg-gray-100 " *matHeaderCellDef>
+                            <div class="text-md font-semibold text-primary">
+                                Ver
+                            </div>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="pr-6 whitespace-nowrap">
+                                {{element.detalle}}
+                            </span>
+                        </td>
+                    </ng-container>
+    
+                
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsEstudio"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsEstudio;"></tr>
+                </table>
+
+                
+            </div>
+        </div>
+    </div>
+</div>

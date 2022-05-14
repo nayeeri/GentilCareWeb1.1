@@ -1,0 +1,52 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+    <!-- Main -->
+    <div class="flex flex-col flex-auto items-center p-6 sm:p-10">
+        <div class="flex flex-col w-full max-w-4xl">
+
+            <div class="mt-2 text-4xl sm:text-7xl font-extrabold tracking-tight leading-tight">
+                {{ title }}
+            </div>
+
+            <!-- Alert -->
+
+            <!--  -->
+            <div class="sm:p-10 sm:pb-7 shadow rounded-2xl bg-card" *ngIf="rolSelect">
+                <form class="space-y-3" [formGroup]="ngForm" #supportNgForm="ngForm">
+                    <fuse-alert *ngIf="showAlert" [showIcon]="false" [type]="alert.type">
+                        {{alert.message}}
+                    </fuse-alert>
+                    <div class="space-y-6 sm:space-y-5">
+
+                        <div class="grid sm:grid-cols-4 gap-4 w-full mt-8">
+
+                            <div class="sm:col-span-4">
+                                <!-- Name field -->
+                                <mat-form-field class="w-full">
+                                    <mat-label>Rol</mat-label>
+                                    <input id="nombre" matInput [formControlName]="'nombre'">
+                                    <mat-error *ngIf="ngForm.get('nombre').hasError('required')">
+                                        Rol es requerido
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="flex items-center justify-end">
+                        <button mat-button [color]="'accent'" [routerLink]="['/pages/roles/lista']">
+                            Cancelar
+                        </button>
+                        <button class="ml-2" mat-flat-button [color]="'primary'" (click)="save()">
+                            Guardar
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

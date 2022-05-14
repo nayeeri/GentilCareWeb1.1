@@ -1,0 +1,82 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+    <!-- Main -->
+    <div class="flex flex-col flex-auto items-center p-6 sm:p-10">
+        <div class="flex flex-col w-full max-w-4xl">
+
+            <div class="mt-2 text-4xl sm:text-7xl font-extrabold tracking-tight leading-tight">
+               {{title}}
+            </div>
+
+
+
+            <!-- Form -->
+            <div class="sm:p-10 sm:pb-7 shadow rounded-2xl bg-card">
+                <!-- Alert -->
+                <fuse-alert *ngIf="showAlert" [showIcon]="false" [type]="alert.type">
+                    {{alert.message}}
+                </fuse-alert>
+                <form class="space-y-1" [formGroup]="perfilForm" #supportNgForm="ngForm">
+
+                    <div class="grid sm:grid-cols-4 gap-4 w-full mt-8">
+                        <div class="sm:col-span-4">
+                            <!-- Correo field -->
+                            <mat-form-field class="w-full">
+                                <mat-label>Correo</mat-label>
+                                <input id="correo" matInput [formControlName]="'correo'">
+                                <mat-error *ngIf="perfilForm.get('correo').hasError('required')">
+                                    Correo es requerido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="sm:col-span-4">
+                            <!-- Nombre field -->
+                            <mat-form-field class="w-full">
+                                <mat-label>Nombre</mat-label>
+                                <input id="nombre" matInput [formControlName]="'nombre'"
+                                    >
+                                <mat-error *ngIf="perfilForm.get('nombre').hasError('required')">
+                                    Nombre es requerido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="sm:col-span-4">
+                            <!-- Apellido Paterno field -->
+                            <mat-form-field class="w-full">
+                                <mat-label>Apellido Paterno</mat-label>
+                                <input id="apellidoPaterno" matInput [formControlName]="'apellidoPaterno'">
+                                <mat-error *ngIf="perfilForm.get('apellidoPaterno').hasError('required')">
+                                    Apellido Paterno es requerido
+                                </mat-error>
+                            </mat-form-field>
+
+                        </div>
+                       
+                       
+                        <div class="sm:col-span-4">
+                            <!-- Telefono field -->
+                            <mat-form-field class="w-full">
+                                <mat-label>Teléfono</mat-label>
+                                <input id="telefono" matInput [formControlName]="'telefono'"
+                                    (keypress)="numberOnly($event, 5)">
+                                <mat-error *ngIf="perfilForm.get('telefono').hasError('required')">
+                                    Teléfono es requerido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+                    <!-- Actions -->
+                    <div class="flex items-center justify-end">
+                        <button mat-button [color]="'accent'" (click)="regresar()" >
+                            Cancelar
+                        </button>
+                        <button class="ml-2" mat-flat-button [color]="'primary'" (click)="guardar()">
+                            Guardar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

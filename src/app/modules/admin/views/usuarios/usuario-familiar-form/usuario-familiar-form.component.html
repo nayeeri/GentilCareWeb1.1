@@ -1,0 +1,118 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+    <!-- Main -->
+    <div class="flex flex-col flex-auto items-center p-6 sm:p-10">
+        <div class="flex flex-col w-full max-w-4xl">
+
+            <div class="mt-2 text-4xl sm:text-7xl font-extrabold tracking-tight leading-tight">
+                {{ title }}
+            </div>
+
+            <!-- Alert -->
+
+            <!--  -->
+            <div class="sm:p-10 sm:pb-7 shadow rounded-2xl bg-card">
+                <form class="space-y-3" [formGroup]="form_" #supportform_="ngForm">
+                    <fuse-alert *ngIf="showAlert" [showIcon]="false" [type]="alert.type">
+                        {{alert.message}}
+                    </fuse-alert>
+                    <div>
+                        <h1 class="text-lg leading-6  text-gray-900">Información Personal</h1>
+                    </div>
+                    <div class="space-y-6 sm:space-y-5">
+
+                        <div class="grid sm:grid-cols-4 gap-4 w-full mt-8">
+                            <div class="sm:col-span-4">
+                                <!-- Name field -->
+                                <mat-form-field class="w-full">
+                                    <mat-label>Nombre</mat-label>
+                                    <input id="nombre" matInput [formControlName]="'nombre'">
+                                    <mat-error *ngIf="form_.get('nombre').hasError('required')">
+                                        Nombre es requerido
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="sm:col-span-2">
+                                <!-- Apellido Paterno field -->
+                                <mat-form-field class="w-full">
+                                    <mat-label>Apellido Paterno</mat-label>
+                                    <input id="apellidoPaterno" matInput [formControlName]="'apellidoPaterno'">
+                                    <mat-error *ngIf="form_.get('apellidoPaterno').hasError('required')">
+                                        Apellido Paterno es requerido
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="sm:col-span-2">
+                                <!-- Apellido Materno field -->
+                                <mat-form-field class="w-full">
+                                    <mat-label>Apellido Materno</mat-label>
+                                    <input id="apellidoMaterno" matInput [formControlName]="'apellidoMaterno'">
+                                    <mat-error *ngIf="form_.get('apellidoMaterno').hasError('required')">
+                                        Apellido Materno es requerido
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="sm:col-span-2">
+                                <!-- Sexo field -->
+                                <mat-form-field class="w-full">
+                                    <mat-label>Sexo</mat-label>
+
+
+                                    <mat-select [formControlName]="'sexo'">
+                                        <mat-option>Seleccionar</mat-option>
+                                        <mat-option value="Femenino">Femenino</mat-option>
+                                        <mat-option value="Masculino">Masculino</mat-option>
+                                    </mat-select>
+
+                                    <mat-error *ngIf="form_.get('apellidoMaterno').hasError('required')">
+                                        Sexo es requerido
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+
+                            <div class="sm:col-span-2">
+                                <!--Fecha nacimiento field -->
+                                <mat-form-field class="w-full">
+                                    <mat-label>Fecha Nacimiento</mat-label>
+                                    <input matInput [matDatepicker]="picker1" disabled [formControlName]="'fechaNacimiento'">
+                                    <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
+                                    <mat-datepicker #picker1 disabled="false"></mat-datepicker>
+                                    <mat-error *ngIf="form_.get('fechaNacimiento').hasError('required')">
+                                        Fecha Nacimiento es requerido
+                                    </mat-error>
+                                </mat-form-field>
+
+                            </div>
+
+
+                            <div class="sm:col-span-2">
+                                <!-- Ceular field -->
+                                <mat-form-field class="w-full">
+                                    <mat-label>Parentezco</mat-label>
+                                    <input id="parentezco" matInput [formControlName]="'parentezco'">
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="flex items-center justify-end">
+                        <button mat-button [color]="'accent'" [routerLink]="['/pages/usuarios/lista']">
+                            Cancelar
+                        </button>
+                        <button class="ml-2" mat-flat-button [color]="'primary'" (click)="save()">
+                            Agregar Familiar
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

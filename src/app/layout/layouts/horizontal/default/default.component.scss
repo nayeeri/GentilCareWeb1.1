@@ -1,0 +1,12 @@
+.button_menu{
+        max-width: 100px !important;
+        text-align: center  !important;
+        text-transform: uppercase  !important;
+        white-space: normal  !important;
+        margin-right: 20px  !important;
+        color: #282828  !important;
+        
+        .mat-button-focus-overlay{
+            margin: -10px  !important;
+        }
+}

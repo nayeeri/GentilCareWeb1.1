@@ -1,0 +1,108 @@
+<div class="sm:absolute sm:inset-0 flex flex-col flex-auto min-w-0 sm:overflow-hidden bg-card dark:bg-transparent">
+
+    <!-- Header -->
+    <div
+        class="relative flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between py-8 px-6 md:px-8 border-b">
+
+        <!-- Title -->
+        <div class="text-4xl font-extrabold tracking-tight">Historial de pagos</div>
+        <!-- Actions -->
+        <div class="flex shrink-0 items-center mt-6 sm:mt-0 sm:ml-4">
+
+
+        </div>
+    </div>
+
+    <!-- Main -->
+    <div class="flex flex-auto overflow-hidden">
+
+        <div class="flex flex-col flex-auto overflow-hidden sm:overflow-y-auto">
+            <div class="grid">
+                <table class="w-full bg-transparent" mat-table [dataSource]="dataSource">
+
+                    <!--Consultas-->
+                    <ng-container matColumnDef="noConsultas">
+                        <th mat-header-cell class="bg-gray-100 " *matHeaderCellDef>
+                            <div class="text-md font-semibold text-primary">
+                                No Consultas
+                            </div>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="pr-6 whitespace-nowrap">
+                                {{element.noConsultas}}
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <!--Ticket-->
+                    <ng-container matColumnDef="ticket">
+                        <th mat-header-cell class="bg-gray-100 " *matHeaderCellDef>
+
+                            <div class="text-md font-semibold text-primary">
+                                No Ticket
+                            </div>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="pr-6 whitespace-nowrap">
+                                {{element.ticket}}
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <!--Fecha-->
+                    <ng-container matColumnDef="fecha">
+                        <th mat-header-cell class="bg-gray-100 " *matHeaderCellDef>
+                            <div class="text-md font-semibold text-primary">
+                                Fecha
+                            </div>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="pr-6 whitespace-nowrap">
+                                {{element.fecha}}
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <!--Hora-->
+                    <ng-container matColumnDef="hora">
+                        <th mat-header-cell class="bg-gray-100 " *matHeaderCellDef>
+                            <div class="text-md font-semibold text-primary">
+                                Hora
+                            </div>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="pr-6 whitespace-nowrap">
+                                {{element.hora}}
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <!--Estatus-->
+                    <ng-container matColumnDef="estatus">
+                        <th mat-header-cell class="bg-gray-100 " *matHeaderCellDef>
+                            <div class="text-md font-semibold text-primary">
+                                Estatus
+                            </div>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="pr-6 whitespace-nowrap">
+                                {{element.estatus}}
+                            </span>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                </table>
+
+            </div>
+            <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+                aria-label="Seleccionar página">
+            </mat-paginator>
+        </div>
+
+
+
+    </div>
+
+</div>

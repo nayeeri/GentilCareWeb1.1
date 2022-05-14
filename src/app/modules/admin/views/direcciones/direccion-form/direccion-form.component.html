@@ -1,0 +1,112 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+    <!-- Main -->
+    <div class="flex flex-col flex-auto items-center p-6 sm:p-10">
+        <div class="flex flex-col w-full max-w-4xl">
+
+            <div class="mt-2 text-4xl sm:text-7xl font-extrabold tracking-tight leading-tight">
+               {{title}}
+            </div>
+
+
+
+            <!-- Form -->
+            <div class="sm:p-10 sm:pb-7 shadow rounded-2xl bg-card">
+                <!-- Alert -->
+                <fuse-alert *ngIf="showAlert" [showIcon]="false" [type]="alert.type">
+                    {{alert.message}}
+                </fuse-alert>
+                <form class="space-y-1" [formGroup]="addressForm" #supportNgForm="ngForm">
+
+                    <div class="grid sm:grid-cols-4 gap-4 w-full mt-8">
+                        <div class="sm:col-span-3">
+                            <!-- calle field -->
+                            <mat-form-field class="w-full">
+                                <mat-label>Calle</mat-label>
+                                <input id="calle" matInput [formControlName]="'calle'">
+                                <mat-error *ngIf="addressForm.get('calle').hasError('required')">
+                                    Calle es requerido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="sm:col-span-1">
+                            <!-- noExterior field -->
+                            <mat-form-field class="w-full">
+                                <mat-label>Número Exterior</mat-label>
+                                <input id="noExterior" matInput [formControlName]="'noExterior'"
+                                    (keypress)="numberOnly($event, 5)">
+                                <mat-error *ngIf="addressForm.get('noExterior').hasError('required')">
+                                    Número Exterior es requerido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <!-- Colonia field -->
+                            <mat-form-field class="w-full">
+                                <mat-label>Colonia</mat-label>
+                                <input id="colonia" matInput [formControlName]="'colonia'">
+                                <mat-error *ngIf="addressForm.get('colonia').hasError('required')">
+                                    Colonia es requerido
+                                </mat-error>
+                            </mat-form-field>
+
+                        </div>
+                        <div class="sm:col-span-2">
+                            <!-- municipio field -->
+                            <mat-form-field class="w-full">
+                                <mat-label>Municipio</mat-label>
+                                <input id="municipio" matInput [formControlName]="'municipio'">
+                                <mat-error *ngIf="addressForm.get('municipio').hasError('required')">
+                                    Municipio es requerido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <!-- ciudad field -->
+                            <mat-form-field class="w-full">
+                                <mat-label>Ciudad</mat-label>
+                                <input id="ciudad" matInput [formControlName]="'ciudad'">
+                                <mat-error *ngIf="addressForm.get('ciudad').hasError('required')">
+                                    Ciudad es requerido
+                                </mat-error>
+                            </mat-form-field>
+
+                        </div>
+                        <div class="sm:col-span-2">
+                            <!-- estado field -->
+                            <mat-form-field class="w-full">
+                                <mat-label>Estado</mat-label>
+                                <input id="estado" matInput [formControlName]="'estado'">
+                                <mat-error *ngIf="addressForm.get('estado').hasError('required')">
+                                    Estado es requerido
+                                </mat-error>
+                            </mat-form-field>
+
+                        </div>
+                        <div class="sm:col-span-2">
+                            <!-- codigoPostal field -->
+                            <mat-form-field class="w-full">
+                                <mat-label>Código Postal</mat-label>
+                                <input id="codigoPostal" matInput [formControlName]="'codigoPostal'"
+                                    (keypress)="numberOnly($event, 5)">
+                                <mat-error *ngIf="addressForm.get('codigoPostal').hasError('required')">
+                                    Código Postal es requerido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+                    <!-- Actions -->
+                    <div class="flex items-center justify-end">
+                        <button mat-button [color]="'accent'" (click)="regresar()" >
+                            Cancelar
+                        </button>
+                        <button class="ml-2" mat-flat-button [color]="'primary'" (click)="guardar()">
+                            Guardar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

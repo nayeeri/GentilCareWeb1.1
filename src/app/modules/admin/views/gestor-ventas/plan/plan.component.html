@@ -1,0 +1,65 @@
+<div class="sm:absolute sm:inset-0 bg-white flex flex-col flex-auto min-h-full sm:overflow-hidden bg-card dark:bg-transparent">
+    <div class="px-4 sm:px-6 lg:px-8">
+
+        <div class="-mx-4 mt-10 ring-1 ring-gray-300 sm:-mx-6 md:mx-0 md:rounded-lg">
+        <table class="min-w-full divide-y divide-gray-300">
+            <thead>
+            <tr>
+                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Plan</th>
+                <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Costo</th>
+                <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Descripcion</th>
+                <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Servicios</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of dataSource">
+                <td class="relative py-4 pl-4 sm:pl-6 pr-3 text-sm">
+                <div class="font-medium text-gray-900">{{ data.plan }}</div>
+                <div class="mt-1 flex flex-col text-gray-500 sm:block lg:hidden">
+                    <span>{{ data.costo }}</span>
+                    <span class="hidden sm:inline"> {{ data.descripcion }} </span>
+                    <span>{{ data.servicios }}</span>
+                </div>
+                </td>
+                <td class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell">{{ data.costo }}</td>
+                <td class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell">{{ data.descripcion }}</td>
+                <td class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell">{{ data.servicios }}</td>
+            </tr>
+
+            </tbody>
+        </table>
+        </div>
+        <div class="pb-5 border-b border-gray-200 mt-10">
+            <h2 class="text-gray-900 text-xl">Solicitar de Plan</h2>
+        </div>
+        <div class="flex items-start space-x-4">
+
+            <div class="min-w-0 flex-1">
+              <form action="#" class="relative">
+                <div class="border border-gray-300 rounded-lg shadow-sm overflow-hidden focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
+                  <label for="comment" class="sr-only">Descripción de Plan para la solicitud</label>
+                  <textarea rows="3" name="comment" id="comment" class="block w-full py-3 border-0 resize-none focus:ring-0 sm:text-sm" placeholder="Add your comment..."></textarea>
+
+                  <!-- Spacer element to match the height of the toolbar -->
+                  <div class="py-2" aria-hidden="true">
+                    <!-- Matches height of button in toolbar (1px border + 36px content height) -->
+                    <div class="py-px">
+                      <div class="h-9"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="absolute bottom-0 inset-x-0 pl-3 pr-2 py-2 flex justify-between">
+                  <div class="flex items-center space-x-5">
+
+                  </div>
+                  <div class="flex-shrink-0">
+                    <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Enviar</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+    </div>
+</div>

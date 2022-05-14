@@ -1,0 +1,119 @@
+<!-- Loading bar -->
+<fuse-loading-bar></fuse-loading-bar>
+
+<!-- Navigation -->
+<ng-container *ngIf="isScreenSmall">
+    <fuse-vertical-navigation class="dark bg-gray-900 print:hidden" [mode]="'over'" [name]="'mainNavigation'"
+        [navigation]="navigation.default" [opened]="false">
+        <!-- Navigation header hook -->
+        <ng-container fuseVerticalNavigationContentHeader>
+            <!-- Logo -->
+            <div class="flex items-center h-20 pt-6 px-8">
+                <img class="w-24" src="assets/images/logo.png">
+            </div>
+
+
+
+
+        </ng-container>
+    </fuse-vertical-navigation>
+</ng-container>
+
+<!-- Wrapper -->
+<div class="flex flex-col flex-auto items-center w-full min-w-0 bg-gray-200 dark:bg-card">
+
+    <!-- Header -->
+    <div class="relative flex justify-center w-full overflow-hidden z-49 bg-primary-700 print:hidden">
+        <div
+            class="max-w-360 w-full sm:py-3 sm:m-8 sm:mb-0 md:mt-12 md:mx-8 md:pb-3 sm:rounded-t-xl border-b sm:shadow-2xl overflow-hidden bg-card">
+            <!-- Top bar -->
+            <div class="relative flex flex-auto flex-0 items-center h-16 px-4 md:px-6">
+                <!-- Logo -->
+                <ng-container *ngIf="!isScreenSmall">
+                    <div class="flex items-center mx-2">
+                        <!-- Light version -->
+                        <img class="w-24 dark:hidden" src="assets/images/logo.png" [routerLink]="['/home']">
+
+                    </div>
+                </ng-container>
+                <!-- Navigation toggle button -->
+                <ng-container *ngIf="isScreenSmall">
+                    <button mat-icon-button (click)="toggleNavigation('mainNavigation')">
+                        <mat-icon>menu</mat-icon>
+                    </button>
+                </ng-container>
+                <!-- Components -->
+                <div class="flex items-left pl-2 ml-auto space-x-1 sm:space-x-2">
+                    <div class="mr-2">
+                        <ng-container *ngFor="let item of menuItems" style="padding: 3px;">
+                            <button mat-button class="button_menu" *ngIf="item.menuUrl !== '#'"
+                                [routerLink]="item.menuUrl">{{item.alias}}</button>
+                            <button mat-button class="button_menu" *ngIf="item.menuUrl == '#'">{{item.alias}}</button>
+                        </ng-container>
+
+
+                        <!-- <button mat-button [routerLink]="['/pages/address/list']">Ver Dirección</button>
+                        <button mat-button [routerLink]="['/pages/plan']">Ver mi Plan</button>
+                        <button mat-button [routerLink]="['/pages/service']">Ver Servicios</button>
+                        <button mat-button>Perfil</button>
+                        <button mat-button>Agregar Familiar</button>
+                        <button mat-button [routerLink]="['/pages/consult']">Consultas</button>
+                        <button mat-button [routerLink]="['/pages/user/0']">Registro de Usuarios</button>
+                        <button mat-button [routerLink]="['/pages/user/new']">Crear Nueva Cuenta</button>
+                        <button mat-button [routerLink]="['/pages/schedule']">Reasignación</button>
+                        <button mat-button color="primary" [routerLink]="['/sign-out']">Cerrar Sesión</button>
+                        <button mat-button [routerLink]="['/pages/schedule']">Reasignación</button> -->
+
+                        <button mat-icon-button [matMenuTriggerFor]="userActions">
+                            <span class="relative">
+                                <mat-icon>account_circle</mat-icon>
+                                <span class="absolute right-0 bottom-0 w-2 h-2 rounded-full"></span>
+                            </span>
+                        </button>
+                        <mat-menu [xPosition]="'before'" #userActions="matMenu">
+                            <button mat-menu-item>
+                                <span class="flex flex-col leading-none">
+
+                                    <span class="mt-1.5 text-bold font-medium">{{role}}</span>
+                                    <span class="mt-1.5 text-md font-medium">{{user.email}}</span>
+                                </span>
+                            </button>
+                            <mat-divider class="my-2"></mat-divider>
+                            <button mat-menu-item [routerLink]="['/sign-out']">
+                                <mat-icon >logout</mat-icon>
+                                <span>Cerrar Sesión</span>
+                            </button>
+                        </mat-menu>
+
+                        <mat-menu class="user-status-menu" #userStatus="matMenu">
+
+                        </mat-menu>
+                        <!-- <button mat-button color="primary" [routerLink]="['/sign-out']">Cerrar Sesión</button> -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="flex flex-auto justify-center w-full sm:px-8">
+        <div class="flex flex-col flex-auto w-full sm:max-w-360 sm:shadow-xl sm:overflow-hidden bg-default"
+            style="min-height: calc(100vh - 14rem);">
+            <!-- *ngIf="true" hack is required here for router-outlet to work correctly.
+                 Otherwise, layout changes won't be registered and the view won't be updated! -->
+            <router-outlet *ngIf="true"></router-outlet>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="relative flex justify-center w-full z-49 print:hidden">
+        <div
+            class="flex items-center max-w-360 w-full h-14 sm:h-20 px-6 md:px-8 sm:shadow-xl border-t bg-card dark:bg-default">
+            <img class="w-24 dark:hidden" src="assets/images/logo_footer.png">
+            &nbsp;&nbsp;
+            <p class="font-medium text-secondary"> &copy; Copyright Gentil.Care | Mentevision {{currentYear}}</p>
+        </div>
+    </div>
+
+</div>

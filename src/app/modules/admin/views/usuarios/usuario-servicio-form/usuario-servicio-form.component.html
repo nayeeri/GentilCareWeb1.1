@@ -1,0 +1,102 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+    <!-- Main -->
+    <div class="flex flex-col flex-auto items-center p-6 sm:p-10">
+        <div class="flex flex-col w-full max-w-4xl">
+
+            <div class="mt-2 text-4xl sm:text-7xl font-extrabold tracking-tight leading-tight">
+                {{ title }}
+            </div>
+
+            <!-- Alert -->
+
+            <!--  -->
+            <div class="sm:p-10 sm:pb-7 shadow rounded-2xl bg-card">
+                <form class="space-y-3" [formGroup]="form_" #supportform_="ngForm">
+                    <fuse-alert *ngIf="showAlert" [showIcon]="false" [type]="alert.type">
+                        {{alert.message}}
+                    </fuse-alert>
+                    <div>
+                        <h1 class="text-lg leading-6  text-gray-900">&nbsp;</h1>
+                    </div>
+                    <div class="space-y-6 sm:space-y-5">
+
+                        <div class="grid sm:grid-cols-4 gap-4 w-full mt-8">
+
+                        <div>
+                            <fieldset>
+                                <legend class="text-base font-medium text-gray-900">Plan personal deseado</legend>
+                                <div class="mt-4 space-y-4">
+                                  <div class="flex items-start">
+                                    <div class="flex items-center h-5">
+                                      <input id="comments" name="comments" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                                    </div>
+                                    <div class="ml-3 text-sm">
+                                      <label for="comments" class="font-medium text-gray-700">Registrar Plan para Familiar</label>
+                                    </div>
+                                  </div>
+                                  <div class="flex items-start">
+                                    <div class="flex items-center h-5">
+                                      <input id="candidates" name="candidates" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                                    </div>
+                                    <div class="ml-3 text-sm">
+                                      <label for="candidates" class="font-medium text-gray-700">COMPRA DE PLANES</label>
+                                    </div>
+                                  </div>
+                                  <div class="flex items-start">
+                                    <div class="flex items-center h-5">
+                                      <input id="offers" name="offers" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                                    </div>
+                                    <div class="ml-3 text-sm">
+                                      <label for="offers" class="font-medium text-gray-700">COMPRA DE SERVICIOS</label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </fieldset>
+                            </div>
+                            <div class="sm:col-span-4">
+                                <!-- Motivo -->
+                                <mat-form-field class="w-full">
+                                    <mat-label>Motivo</mat-label>
+                                    <input id="motivo" matInput [formControlName]="'motivo'">
+                                    <mat-error *ngIf="form_.get('motivo').hasError('required')">
+                                        Motivo es requerido
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+
+                            <div class="sm:col-span-2">
+                                <!--Fecha nacimiento field -->
+                                <mat-form-field class="w-full">
+                                    <mat-label>&nbsp;</mat-label>
+                                    <input matInput [matDatepicker]="picker1" disabled [formControlName]="'fechaNacimiento'">
+                                    <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
+                                    <mat-datepicker #picker1 disabled="false"></mat-datepicker>
+                                    <mat-error *ngIf="form_.get('fechaNacimiento').hasError('required')">
+                                        &nbsp;;
+                                    </mat-error>
+                                </mat-form-field>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="flex items-center justify-end">
+                        <button mat-button [color]="'accent'" [routerLink]="['/pages/usuarios/lista']">
+                            Cancelar
+                        </button>
+                        <button class="ml-2" mat-flat-button [color]="'primary'" (click)="save()">
+                            Validar
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
